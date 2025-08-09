@@ -1,0 +1,38 @@
+{
+	"name": "VideoPlayerUniPlugin",
+	"id": "VideoPlayerUniPlugin",
+	"version": "1.0.0",
+	"description": "tiktok插件",
+	"_dp_type": "nativeplugin",
+	"_dp_nativeplugin": {
+		"ios": {
+			"plugins": [{
+				"type": "module",
+				"name": "VideoPlayerUniPlugin",
+				"class": "VideoPlayerModule"
+			},{
+				"type": "component",
+				"name": "dc-testmap",
+				"class": "TestComponent"
+			},{
+				"type": "component",
+				"name": "dc-smallPlayer",
+				"class": "SmallPlayerComponent"
+			}],
+			"frameworks": [
+				"VideoPlayerUniPlugin.framework"
+			],
+			"integrateType": "framework",
+			"deploymentTarget": "9.0",
+			"validArchitectures": [
+				"arm64", "armv7"
+			],
+			"privacies": [
+				"NSPhotoLibraryUsageDescription", "NSPhotoLibraryAddUsageDescription", "NSCameraUsageDescription", "NSMicrophoneUsageDescription"
+			]
+		},
+		"android": {
+		 
+		}
+	}
+}

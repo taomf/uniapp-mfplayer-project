@@ -1,0 +1,71 @@
+{
+	"id": "ll-tiktok",
+	"version": "1.1.1",
+	"displayName": "TikTok 授权登录与分享 uni本地插件",
+	"description": "TikTok 登录 分享图片 分享视频！",
+	"keywords": [
+        "TikTok",
+        "登录",
+        "sdk",
+        "分享图片",
+        "分享视频"
+    ],
+	"repository": "",
+	"engines": {
+		"HBuilderX": "^3.2.11"
+	},
+	"dcloudext": {
+		"sale": {
+			"regular": {
+				"price": "100.00"
+			},
+			"sourcecode": {
+				"price": "199.00"
+			}
+		},
+		"contact": {
+			"qq": "876637125"
+		},
+		"declaration": {
+			"ads": "可接入广告",
+			"data": "获取用户头像",
+			"permissions": "相册权限、保存图片到相册"
+		},
+		"npmurl": "",
+		"type": "unicloud-template-project"
+	},
+	"uni_modules": {
+		"dependencies": [],
+		"encrypt": [
+			"uniCloud-aliyun/cloudfunctions/getAppkey/index.js"
+        ],
+        "platforms": {
+            "client": {
+                "App": {
+                    "app-harmony": "u",
+                    "app-nvue": "u",
+                    "app-uvue": "u",
+                    "app-vue": "u"
+                }
+            }
+        }
+	},
+	"dependencies": {
+		"json-bigint": "^1.0.0",
+		"tencentcloud-sdk-nodejs": "^4.0.673",
+		"tencentcloud-sdk-nodejs-aiart": "^4.0.673",
+		"tslib": "^2.6.2",
+		"uview-ui": "^2.0.35"
+	},
+	"cloudfunction-config": {
+		"memorySize": 256,
+		"timeout": 5,
+		"triggers": [{
+			"name": "myTrigger",
+			"type": "timer",
+			"config": "0 0 2 1 * * *"
+		}],
+		"path": "",
+		"runtime": "Nodejs12"
+	}
+}

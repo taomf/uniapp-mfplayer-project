@@ -1,0 +1,26 @@
+<template>
+	<div>
+		<splashAdView ref="telText" tel="{'codeid':'b673d771ede8ef','width':'400',height:'200'}" style="width:400;height:1000;background-color: red;" @onTel="onTel" @click="myTextClick">
+			
+		</splashAdView>
+	</div>
+</template>
+
+<script>  
+    export default {  
+        data() {  
+            return {  
+            }  
+        },  
+        onLoad() {  
+        },  
+        methods: {  
+			onTel(e) {
+				console.log("onTel="+e.detail.tel);
+			},
+			myTextClick(e) {
+				this.$refs.telText.clearTel();
+			}
+        }  
+    }  
+</script>  

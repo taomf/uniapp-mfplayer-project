@@ -1,0 +1,128 @@
+<template>
+	<div>
+	<!-- 	<button type="primary" @click="testAsyncFunc">testAsyncFunc</button>
+		<button type="primary" @click="testSyncFunc">testSyncFunc</button> -->
+
+		<button type="primary" @click="tiktokAppInstalled">tiktokAppInstalled</button>
+		<button type="primary" @click="initWithAppid1">initWithAppid1</button>
+		<button type="primary" @click="tiktokAuth">tiktokAuth</button>
+		<button type="primary" @click="tiktokShareImages">tiktokShareImages</button>
+		<button type="primary" @click="tiktokShareVideo">tiktokShareVideo</button>
+		<button type="primary" @click="testAsyncFunc">testAsyncFunc</button>
+		
+		
+		
+			
+		<!-- <button style="margin-top: 10px;" type="primary" @click="initWithAppid">initWithAppid</button>
+		<button type="primary" @click="tapAuth">tapAuth</button>
+		<button type="primary" @click="selectPhotoAsyncFunc">selectPhotoAsyncFunc</button> -->
+	</div>
+</template>
+
+<script>
+	// 首先需要通过 uni.requireNativePlugin("ModuleName") 获取 module
+	// var testModule = uni.requireNativePlugin("DCTestUniPlugin-TestModule")
+
+	var TikTok = uni.requireNativePlugin('TiktokUniPlugin');
+
+	export default {
+		methods: {
+			//初始化
+			initWithAppid() {
+				// 调用异步方法
+				var res = testModule.initWithAppid("sbawije4xvw4c01u7o");
+				console.log("-----res", res)
+			},
+			//登录
+			tapAuth() {
+				// 调用异步方法
+				testModule.tapAuth({},
+					(ret) => {
+						uni.showToast({
+							title:'调用异步方法 ' + ret,
+							icon: "none"
+						})
+					})
+			},
+			//分享
+			selectPhotoAsyncFunc() {
+				uni.chooseImage({
+					count: 7,
+					success: (res) => {
+						// 调用异步方法
+						testModule.selectPhotoAsyncFunc(res,
+							(ret) => {
+								uni.showToast({
+									title: '调用异步方法 ' + ret,
+									icon: "none"
+								})
+							})
+					}
+				})
+			},
+
+			testAsyncFunc() {
+				// 调用异步方法
+				TikTok.testAsyncFunc({
+						'name': 'uni-app',
+						'age': 1
+					},
+					(ret) => {
+						console.log("-----reret", ret)
+						uni.showToast({
+							title: '调用异步方法 ' + ret,
+							icon: "none"
+						})
+					})
+			},
+			//初始化
+			initWithAppid1() {
+				var res = TikTok.initWithAppid("sbawije4xvw4c01u7o");
+				console.log("-----res", res)
+			},
+			//是否安装
+			tiktokAppInstalled() {
+				var result = TikTok.tiktokAppInstalled();
+				console.log("-----是否安装", result)
+			},
+			//授权登录
+			tiktokAuth() {
+				TikTok.tiktokAuth({"scope":"user.info.basic","state":""},
+					(ret) => {
+						var json = JSON.stringify(ret)
+						console.log("-----tiktokAuth：", json)
+						uni.showToast({
+							title: '调用异步方法 ' + json,
+							icon: "none"
+						})
+						
+					})
+			},
+			//分享图片
+			tiktokShareImages() {
+				uni.chooseImage({
+					count: 7,
+					success: (res) => {
+						// 调用异步方法
+						TikTok.tiktokShareImages(res,
+							(ret, ret1) => {
+								console.log(ret,ret1)
+							})
+					}
+				})
+			},
+			//分享视频
+			tiktokShareVideo() {
+				uni.chooseVideo({
+					sourceType: ['album'],
+					success: function(res) {
+						TikTok.tiktokShareVideo(res,
+							(ret,ret1) => {
+								console.log(ret,ret1)
+							})
+					}
+				});
+			},
+		}
+	}
+</script>
