@@ -17,8 +17,15 @@
 			"style": {
 				"navigationBarTitleText": "扩展 component"
 			}
-		},	{
+		}, 
+		{
 			"path": "pages/sample/smallPlayer-component",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/sample/smallPlayer-component-Android",
 			"style": {
 				"navigationStyle": "custom"
 			}

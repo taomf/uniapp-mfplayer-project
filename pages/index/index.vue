@@ -4,6 +4,7 @@
 			<text class="hello-text">uni原生插件示例</text>
 		</view>
 		<button @click="playVideo1">小屏幕 播放</button>
+		<button @click="playVideo2">Android播放</button>
 	</view>
 </template>
 <script>
@@ -57,6 +58,12 @@
 			playVideo1() {
 				uni.navigateTo({
 					url: "/pages/sample/smallPlayer-component"
+				});
+			},
+			playVideo2() {
+				console.log(1);
+				uni.navigateTo({
+					url: "/pages/sample/smallPlayer-component-Android"
 				});
 			},
 			playVideo() {

@@ -1,0 +1,114 @@
+<template>
+	<view class="bgView">
+		<MFPlayer :style="{'width':video_w,'height':video_h}" ref='myPlayer'
+		  @exitPlayer="exitPlayer"
+		  @onProgress="onProgress"
+		  @completion="completion"></MFPlayer>
+
+		<button @click="playVideo">a播放</button>
+		<button @click="pauseVideo">a暂停</button>
+		<text>{{progress}}</text>
+	</view>
+
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				title: '',
+				video_h: 0,
+				video_w: 0,
+				progress:"",
+			}
+		},
+		onLoad() {
+			var windowWidth = uni.getSystemInfoSync().windowWidth
+			this.video_w = windowWidth
+			this.video_h = windowWidth * 9 / 16
+
+			setTimeout(() => {
+				this.initPlayer()
+			}, 1000)
+		},
+		methods: {
+			//退出视频播放器
+			exitPlayer() {
+				console.log("退出播放器 " )
+				
+				uni.navigateBack()
+			},
+			//播放结束
+			completion() {
+				console.log("播放结束")
+			},
+			//播放进度
+			onProgress(e) {
+				console.log("播放进度：", e.detail)
+				this.progress =  JSON.stringify(e.detail)
+			},
+			//播放
+			playVideo() {
+				this.$refs.myPlayer.play();
+			},
+			//暂停
+			pauseVideo() {
+				this.$refs.myPlayer.pause();
+			},
+
+			//初始化播放器
+			initPlayer() {
+				var info = {
+					"title": "三国",
+					"isHiddenRateBtn": false,
+					"isHiddenRefinitionBtn": false,
+					"logoUrlString": "https://q9.itc.cn/q_70/images03/20241104/92979a896f064504b52c312838e87c97.jpeg",
+					"video": {
+						"普通": "http://qhxjy.oss-cn-beijing.aliyuncs.com/1751439906853_%E3%80%8A%E4%B8%89%E5%9B%BD%E6%BC%94%E4%B9%89%201994%20%E3%80%8B%E7%AC%AC84%E9%9B%86.mp4",
+						"高清": "http://qhxjy.oss-cn-beijing.aliyuncs.com/1751439906853_%E3%80%8A%E4%B8%89%E5%9B%BD%E6%BC%94%E4%B9%89%201994%20%E3%80%8B%E7%AC%AC84%E9%9B%86.mp4",
+						"蓝光": "http://qhxjy.oss-cn-beijing.aliyuncs.com/1751439906853_%E3%80%8A%E4%B8%89%E5%9B%BD%E6%BC%94%E4%B9%89%201994%20%E3%80%8B%E7%AC%AC84%E9%9B%86.mp4",
+					}
+				}
+				this.$refs.myPlayer.initPlayer(info);
+			}
+		}
+	}
+</script>
+
+<style>
+	button {
+		margin-top: 30upx;
+		margin-bottom: 30upx;
+	}
+
+	.bgView {
+		margin-top: 80px;
+	}
+
+	.content {
+		text-align: center;
+		height: 400upx;
+	}
+
+	.wrapper {
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.button {
+		width: 200px;
+		margin-top: 30px;
+		margin-left: 20px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		border-width: 2px;
+		border-style: solid;
+		border-color: #458B00;
+		background-color: #458B00;
+	}
+
+	.text {
+		font-size: 30px;
+		color: #666666;
+		text-align: center;
+	}
+</style>
